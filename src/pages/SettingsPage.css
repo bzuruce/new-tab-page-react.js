@@ -15,5 +15,6 @@ button.quick-link {
   justify-content: center;
   border-radius: 20px;
   padding: 40px;
-  background-color: #f5bcbc
+  background-color: #f36868;
+  opacity: 0.7;
 }

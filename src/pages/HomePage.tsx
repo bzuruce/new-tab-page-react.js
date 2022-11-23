@@ -2,18 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './HomePage.css'
 import dayjs from 'dayjs'
+import { useNewTabStore } from '../store';
 
-const initDate = dayjs(new Date());
+let initDate = dayjs(new Date());
 
 export function HomePage() {
-  const d = new Date
-  const [time, setTime] = useState<string>(initDate.format("h:mm"))
-  const [ampm, setAmPm] = useState<string>(initDate.format("A"))
-  const [date, setDate] = useState<string>()
-  const [todo, setTodo] = useState<string>('Nothing')
-  const [quickLinkName, setQuickLinkName] = useState<string>('Google')
-  const [quickLinkURL, setQuickLinkURL] = useState<string>('https://google.com')
-  const [searchBar, setSearchBar] = useState<string>('Boz')
+  let d = new Date
+  let [time, setTime] = useState<string>(initDate.format("h:mm"))
+  let [ampm, setAmPm] = useState<string>(initDate.format("A"))
+  let [date, setDate] = useState<string>()
+
+  const {userTodo} = useNewTabStore();
+  let [todo, setTodo] = useState<string>('Nothing')
+  let [quickLinkName, setQuickLinkName] = useState<string>('Google')
+  let [quickLinkURL, setQuickLinkURL] = useState<string>('https://google.com')
+  let [searchBar, setSearchBar] = useState<string>('Boz')
 
   return (
     <div className="App">
@@ -23,7 +26,7 @@ export function HomePage() {
       <div className="mediumtitle">{date}</div>
       <div className="bigtitle">{time}</div> <div className="mediumtitle">{ampm}</div><br></br>
       <div className="lessmediumtitle">What you need to do today: </div>
-      <div className="lessbigtitle">{todo}</div>
+      <div className="lessbigtitle">{userTodo}</div>
       <br></br>
       <button className="quick-link" onClick={() => window.location.href=quickLinkURL}>{quickLinkName}</button><br></br><br></br>
       <button className="quick-link" onClick={() => window.location.href="/settings"}>Settings</button>
